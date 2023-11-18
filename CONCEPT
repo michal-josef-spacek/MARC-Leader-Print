@@ -1,0 +1,3 @@
+CONCEPT
+=======
+Class to print Data::MARC::Leader object nicely.
