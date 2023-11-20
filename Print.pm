@@ -146,6 +146,34 @@ MARC::Leader::Print - MARC leader class for print.
 
 Constructor.
 
+=over 8
+
+=item * C<mode_ansi>
+
+Mode for ANSI color support:
+
+ 1 - ANSI color support enabled.
+ 0 - ANSI color support disabled.
+
+When is undefined, env variables C<COLOR> or C<NO_COLOR> could control ANSI
+color support.
+
+Default value is undef.
+
+=item * C<mode_desc>
+
+Use description instead of raw leader values.
+
+Default value is 1.
+
+=item * C<output_separator>
+
+Output separator used in scalar context of C<print()> method.
+
+Default value is "\n".
+
+=back
+
 Returns instance of object.
 
 =head2 C<print>

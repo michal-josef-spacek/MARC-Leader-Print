@@ -1,5 +1,6 @@
 0.02
  - Add ANSI support.
+ - Add constructor parameters to doc.
  - Fix dependencies.
  - Regen example.
  - Remove trailing space in code.

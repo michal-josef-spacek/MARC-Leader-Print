@@ -14,6 +14,30 @@ METHODS
 
     Constructor.
 
+    *       "mode_ansi"
+
+            Mode for ANSI color support:
+
+             1 - ANSI color support enabled.
+             0 - ANSI color support disabled.
+
+            When is undefined, env variables "COLOR" or "NO_COLOR" could
+            control ANSI color support.
+
+            Default value is undef.
+
+    *       "mode_desc"
+
+            Use description instead of raw leader values.
+
+            Default value is 1.
+
+    *       "output_separator"
+
+            Output separator used in scalar context of "print()" method.
+
+            Default value is "\n".
+
     Returns instance of object.
 
   "print"
