@@ -66,7 +66,7 @@ sub print {
 	push @ret, $self->_key('Type of control').$self->_print($leader_obj,
 		'type_of_control');
 	push @ret, $self->_key('Character coding scheme').$self->_print($leader_obj,
-		'char_encoding_scheme');
+		'char_coding_scheme');
 	push @ret, $self->_key('Indicator count').$self->_print($leader_obj,
 		'indicator_count');
 	push @ret, $self->_key('Subfield code count').$self->_print($leader_obj,
@@ -213,7 +213,7 @@ Returns array of string in array context.
  # Data object.
  my $data_marc_leader = Data::MARC::Leader->new(
          'bibliographic_level' => 'm',
-         'char_encoding_scheme' => 'a',
+         'char_coding_scheme' => 'a',
          'data_base_addr' => 541,
          'descriptive_cataloging_form' => 'i',
          'encoding_level' => ' ',
