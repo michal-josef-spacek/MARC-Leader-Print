@@ -9,7 +9,7 @@ use Data::MARC::Leader::Utils;
 our $VERSION = 0.02;
 
 # Constructor.
- sub new {
+sub new {
 	my ($class, @params) = @_;
 
 	# Create object.
