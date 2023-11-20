@@ -24,6 +24,9 @@ METHODS
     compose printing output as one string. In array context compose list of
     printing lines.
 
+    Color (ANSI colors) output is controlled by 'mode_ansi' parameter or env
+    variables "COLOR" and "NO_COLOR".
+
     Returns string in scalar context. Returns array of string in array
     context.
 
@@ -84,7 +87,9 @@ EXAMPLE
      # Undefined: Undefined
 
 DEPENDENCIES
-    Class::Utils, Data::MARC::Leader::Utils.
+    Class::Utils, Data::MARC::Leader::Utils, English, Error::Pure.
+
+    And optional Term::ANSIColor for ANSI color support.
 
 SEE ALSO
     Data::MARC::Leader

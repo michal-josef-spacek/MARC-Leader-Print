@@ -5,6 +5,8 @@ use warnings;
 
 use Class::Utils qw(set_params);
 use Data::MARC::Leader::Utils;
+use English;
+use Error::Pure qw(err);
 
 our $VERSION = 0.02;
 
@@ -14,6 +16,9 @@ sub new {
 
 	# Create object.
 	my $self = bless {}, $class;
+
+	# Use with ANSI sequences.
+	$self->{'mode_ansi'} = undef;
 
 	# Use description.
 	$self->{'mode_desc'} = 1;
@@ -26,6 +31,26 @@ sub new {
 
 	$self->{'_utils'} = Data::MARC::Leader::Utils->new;
 
+	if (! defined $self->{'mode_ansi'}) {
+		if (exists $ENV{'NO_COLOR'}) {
+			$self->{'mode_ansi'} = 0;
+		} elsif (defined $ENV{'COLOR'}) {
+			$self->{'mode_ansi'} = 1;
+		} else {
+			$self->{'mode_ansi'} = 0;
+		}
+	}
+
+	# Check routine for ANSI colors output.
+	if ($self->{'mode_ansi'}) {
+		eval {
+			require Term::ANSIColor;
+		};
+		if ($EVAL_ERROR) {
+			err "Cannot load 'Term::ANSIColor' module.";
+		}
+	}
+
 	return $self;
 }
 
@@ -33,35 +58,49 @@ sub print {
 	my ($self, $leader_obj) = @_;
 
 	my @ret;
-	push @ret, 'Record length: '.$leader_obj->length;
-	push @ret, 'Record status: '.$self->_print($leader_obj, 'status');
-	push @ret, 'Type of record: '.$self->_print($leader_obj, 'type');
-	push @ret, 'Bibliographic level: '.$self->_print($leader_obj,
+	push @ret, $self->_key('Record length').$leader_obj->length;
+	push @ret, $self->_key('Record status').$self->_print($leader_obj, 'status');
+	push @ret, $self->_key('Type of record').$self->_print($leader_obj, 'type');
+	push @ret, $self->_key('Bibliographic level').$self->_print($leader_obj,
 		'bibliographic_level');
-	push @ret, 'Type of control: '.$self->_print($leader_obj,
+	push @ret, $self->_key('Type of control').$self->_print($leader_obj,
 		'type_of_control');
-	push @ret, 'Character coding scheme: '.$self->_print($leader_obj,
+	push @ret, $self->_key('Character coding scheme').$self->_print($leader_obj,
 		'char_encoding_scheme');
-	push @ret, 'Indicator count: '.$self->_print($leader_obj,
+	push @ret, $self->_key('Indicator count').$self->_print($leader_obj,
 		'indicator_count');
-	push @ret, 'Subfield code count: '.$self->_print($leader_obj,
+	push @ret, $self->_key('Subfield code count').$self->_print($leader_obj,
 		'subfield_code_count', 1);
-	push @ret, 'Base address of data: '.$leader_obj->data_base_addr;
-	push @ret, 'Encoding level: '.$self->_print($leader_obj,
+	push @ret, $self->_key('Base address of data').$leader_obj->data_base_addr;
+	push @ret, $self->_key('Encoding level').$self->_print($leader_obj,
 		'encoding_level');
-	push @ret, 'Descriptive cataloging form: '.$self->_print($leader_obj,
+	push @ret, $self->_key('Descriptive cataloging form').$self->_print($leader_obj,
 		'descriptive_cataloging_form');
-	push @ret, 'Multipart resource record level: '.$self->_print($leader_obj,
+	push @ret, $self->_key('Multipart resource record level').$self->_print($leader_obj,
 		'multipart_resource_record_level');
-	push @ret, 'Length of the length-of-field portion: '.$self->_print($leader_obj,
+	push @ret, $self->_key('Length of the length-of-field portion').$self->_print($leader_obj,
 		'length_of_field_portion_len', 1);
-	push @ret, 'Length of the starting-character-position portion: '.
+	push @ret, $self->_key('Length of the starting-character-position portion').
 		$self->_print($leader_obj, 'starting_char_pos_portion_len', 1);
-	push @ret, 'Length of the implementation-defined portion: '.
+	push @ret, $self->_key('Length of the implementation-defined portion').
 		$self->_print($leader_obj, 'impl_def_portion_len', 1);
-	push @ret, 'Undefined: '.$self->_print($leader_obj, 'undefined');
+	push @ret, $self->_key('Undefined').$self->_print($leader_obj, 'undefined');
 
 	return wantarray ? @ret : (join $self->{'output_separator'}, @ret);
+}
+
+sub _key {
+	my ($self, $key) = @_;
+
+	my $ret;
+	if ($self->{'mode_ansi'}) {
+		$ret = Term::ANSIColor::color('cyan').$key.Term::ANSIColor::color('reset');
+	} else {
+		$ret = $key;
+	}
+	$ret .= ': ';
+
+	return $ret;
 }
 
 sub _print {
@@ -117,6 +156,9 @@ Returns instance of object.
 Process L<Data::MARC::Leader> instance to output print.
 In scalar context compose printing output as one string.
 In array context compose list of printing lines.
+
+Color (ANSI colors) output is controlled by 'mode_ansi' parameter
+or env variables C<COLOR> and C<NO_COLOR>.
 
 Returns string in scalar context.
 Returns array of string in array context.
@@ -184,7 +226,11 @@ Returns array of string in array context.
 =head1 DEPENDENCIES
 
 L<Class::Utils>,
-L<Data::MARC::Leader::Utils>.
+L<Data::MARC::Leader::Utils>,
+L<English>,
+L<Error::Pure>.
+
+And optional L<Term::ANSIColor> for ANSI color support.
 
 =head1 SEE ALSO
 
