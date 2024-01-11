@@ -110,9 +110,11 @@ sub _print {
 	my $ret;
 	if ($self->{'mode_desc'}) {
 		$ret = eval "\$self->{'_utils'}->desc_$method_name(\$ret_value);";
-	}
-	if (defined $value) {
-		$ret .= ' ('.$ret_value.')';
+		if (defined $value) {
+			$ret .= ' ('.$ret_value.')';
+		}
+	} else {
+		$ret = $ret_value;
 	}
 
 	return $ret;
