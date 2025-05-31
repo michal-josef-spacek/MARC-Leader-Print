@@ -2,7 +2,10 @@ TODO
 ====
 2. Tests.
 4. Add Czech translation: https://prirucky.ipk.nkp.cz/katalogizace/monografie/navesti
-5.
+Conflict with Czech translation in Data::MARC::Leader
+Move translations to something common?
+5. Move texts to MARC::Description.
+6.
 
 Applied
 =======
