@@ -19,9 +19,10 @@ perl_version 5.006002;
 readme_from 'Print.pm';
 recursive_author_tests('xt');
 requires 'Class::Utils' => 0.03;
-requires 'Data::MARC::Leader::Utils' => 0.03;
 requires 'English' => 0;
 requires 'Error::Pure' => 0;
+requires 'MARC::Leader::L10N' => 0.02;
+requires 'Mo::utils::Language' => 0.05;
 resources 'bugtracker' => 'https://github.com/michal-josef-spacek/MARC-Leader-Print/issues',
 resources 'homepage' => 'https://github.com/michal-josef-spacek/MARC-Leader-Print';
 resources 'repository' => 'git://github.com/michal-josef-spacek/MARC-Leader-Print';

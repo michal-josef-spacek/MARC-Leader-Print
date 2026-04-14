@@ -1,10 +1,6 @@
 TODO
 ====
 2. Tests.
-4. Add Czech translation: https://prirucky.ipk.nkp.cz/katalogizace/monografie/navesti
-Conflict with Czech translation in Data::MARC::Leader
-Move translations to something common?
-5. Move texts to MARC::Description.
 6.
 
 Applied
@@ -14,3 +10,12 @@ OK [20231119] skim
 
 3. Add constructor parameter to doc.
 OK [20231120] skim
+
+4. Add Czech translation: https://prirucky.ipk.nkp.cz/katalogizace/monografie/navesti
+Conflict with Czech translation in Data::MARC::Leader
+Move translations to something common?
+Created MARC::Leader::L10N
+OK [20260415] skim
+
+5. Move texts to MARC::Description.
+OK [20260415] skim
