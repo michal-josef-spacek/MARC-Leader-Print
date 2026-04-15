@@ -9,7 +9,7 @@ use Error::Pure qw(err);
 use MARC::Leader::L10N 0.02;
 use Mo::utils::Language 0.05 qw(check_language_639_1);
 
-our $VERSION = 0.05;
+our $VERSION = 0.06;
 
 # Constructor.
 sub new {
@@ -377,6 +377,6 @@ BSD 2-Clause License
 
 =head1 VERSION
 
-0.05
+0.06
 
 =cut
