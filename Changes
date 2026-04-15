@@ -1,4 +1,5 @@
 0.06
+ - Add tests for print().
  - Fix value for indicator count.
  - Update to MARC::Leader::L10N@0.03, there were bad key.
 
