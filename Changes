@@ -1,4 +1,5 @@
 0.06
+ - Fix value for indicator count.
  - Update to MARC::Leader::L10N@0.03, there were bad key.
 
 0.05 2026-04-15T13:11:39+02:00

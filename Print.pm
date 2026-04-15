@@ -75,7 +75,7 @@ sub print {
 	push @ret, $self->_key('Character coding scheme').$self->_print($leader_obj,
 		'char_coding_scheme');
 	push @ret, $self->_key('Indicator count').$self->_print($leader_obj,
-		'indicator_count');
+		'indicator_count', 1);
 	push @ret, $self->_key('Subfield code count').$self->_print($leader_obj,
 		'subfield_code_count', 1);
 	push @ret, $self->_key('Base address of data').$leader_obj->data_base_addr;
