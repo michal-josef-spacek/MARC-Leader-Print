@@ -81,10 +81,10 @@ sub print {
 		'type_of_control');
 	push @ret, $self->_key('Character coding scheme').$self->_print($leader_obj,
 		'char_coding_scheme');
-	push @ret, $self->_key('Indicator count').$self->_print($leader_obj,
-		'indicator_count', 1);
-	push @ret, $self->_key('Subfield code count').$self->_print($leader_obj,
-		'subfield_code_count', 1);
+	push @ret, $self->_key('Indicator count').
+		$leader_obj->indicator_count;
+	push @ret, $self->_key('Subfield code count').
+		$leader_obj->subfield_code_count;
 	push @ret, $self->_key('Base address of data').$leader_obj->data_base_addr;
 	push @ret, $self->_key('Encoding level').$self->_print($leader_obj,
 		'encoding_level');
@@ -92,12 +92,12 @@ sub print {
 		'descriptive_cataloging_form');
 	push @ret, $self->_key('Multipart resource record level').$self->_print($leader_obj,
 		'multipart_resource_record_level');
-	push @ret, $self->_key('Length of the length-of-field portion').$self->_print($leader_obj,
-		'length_of_field_portion_len', 1);
+	push @ret, $self->_key('Length of the length-of-field portion').
+		$leader_obj->length_of_field_portion_len;
 	push @ret, $self->_key('Length of the starting-character-position portion').
-		$self->_print($leader_obj, 'starting_char_pos_portion_len', 1);
+		$leader_obj->starting_char_pos_portion_len;
 	push @ret, $self->_key('Length of the implementation-defined portion').
-		$self->_print($leader_obj, 'impl_def_portion_len', 1);
+		$leader_obj->impl_def_portion_len;
 	push @ret, $self->_key('Undefined').$self->_print($leader_obj, 'undefined');
 
 	return wantarray ? @ret : (join $self->{'output_separator'}, @ret);
@@ -119,7 +119,7 @@ sub _key {
 }
 
 sub _print {
-	my ($self, $leader_obj, $method_name, $value) = @_;
+	my ($self, $leader_obj, $method_name) = @_;
 
 	my $ret_value = $leader_obj->$method_name;
 	my $ret;
@@ -127,9 +127,6 @@ sub _print {
 		my $ret_value_fixed = $ret_value;
 		$ret_value_fixed =~ s/\ /_/msg;
 		$ret = $self->{'_l'}->maketext($method_name.'.'.$ret_value_fixed);
-		if (defined $value) {
-			$ret .= ' ('.$ret_value.')';
-		}
 	} else {
 		$ret = $ret_value;
 	}
