@@ -10,7 +10,7 @@ use MARC::Leader::L10N 0.03;
 use Mo::utils 0.06 qw(check_bool);
 use Mo::utils::Language 0.05 qw(check_language_639_1);
 
-our $VERSION = 0.08;
+our $VERSION = 0.09;
 
 # Constructor.
 sub new {
@@ -391,6 +391,6 @@ BSD 2-Clause License
 
 =head1 VERSION
 
-0.08
+0.09
 
 =cut
