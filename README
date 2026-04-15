@@ -70,6 +70,11 @@ ERRORS
      new():
              From Class::Utils::set_params():
                      Unknown parameter '%s'.
+             From Mo::utils::check_bool():
+                     Parameter 'mode_ansi' must be a bool (0/1).
+                             Value: %s
+                     Parameter 'mode_desc' must be a bool (0/1).
+                             Value: %s
              From Mo::utils::Language::check_language_639_1():
                      Parameter 'lang' doesn't contain valid ISO 639-1 code.
                              Codeset: %s

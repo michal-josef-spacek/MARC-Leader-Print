@@ -1,4 +1,5 @@
 0.07
+ - Add check for mode parameters in constructor.
  - Fix ERRORS section in doc.
  - Fix test dependencies.
 

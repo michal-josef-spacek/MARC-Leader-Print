@@ -7,6 +7,7 @@ use Class::Utils qw(set_params);
 use English;
 use Error::Pure qw(err);
 use MARC::Leader::L10N 0.03;
+use Mo::utils 0.06 qw(check_bool);
 use Mo::utils::Language 0.05 qw(check_language_639_1);
 
 our $VERSION = 0.07;
@@ -35,6 +36,12 @@ sub new {
 
 	# Check 'lang'.
 	check_language_639_1($self, 'lang');
+
+	# Check 'mode_ansi'.
+	check_bool($self, 'mode_ansi');
+
+	# Check 'mode_desc'.
+	check_bool($self, 'mode_desc');
 
 	if (! defined $self->{'mode_ansi'}) {
 		if (exists $ENV{'NO_COLOR'}) {
@@ -224,6 +231,11 @@ Returns array of string in array context.
  new():
          From Class::Utils::set_params():
                  Unknown parameter '%s'.
+         From Mo::utils::check_bool():
+                 Parameter 'mode_ansi' must be a bool (0/1).
+                         Value: %s
+                 Parameter 'mode_desc' must be a bool (0/1).
+                         Value: %s
          From Mo::utils::Language::check_language_639_1():
                  Parameter 'lang' doesn't contain valid ISO 639-1 code.
                          Codeset: %s
