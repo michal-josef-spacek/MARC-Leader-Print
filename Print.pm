@@ -224,6 +224,11 @@ Returns array of string in array context.
  new():
          From Class::Utils::set_params():
                  Unknown parameter '%s'.
+         From Mo::utils::Language::check_language_639_1():
+                 Parameter 'lang' doesn't contain valid ISO 639-1 code.
+                         Codeset: %s
+                         Value: %s
+         Cannot load 'Term::ANSIColor' module.
 
 =head1 EXAMPLE1
 
