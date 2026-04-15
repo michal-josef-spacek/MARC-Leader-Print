@@ -21,7 +21,7 @@ recursive_author_tests('xt');
 requires 'Class::Utils' => 0.03;
 requires 'English' => 0;
 requires 'Error::Pure' => 0;
-requires 'MARC::Leader::L10N' => 0.02;
+requires 'MARC::Leader::L10N' => 0.03;
 requires 'Mo::utils::Language' => 0.05;
 resources 'bugtracker' => 'https://github.com/michal-josef-spacek/MARC-Leader-Print/issues',
 resources 'homepage' => 'https://github.com/michal-josef-spacek/MARC-Leader-Print';

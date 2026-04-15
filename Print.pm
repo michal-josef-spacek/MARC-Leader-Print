@@ -6,7 +6,7 @@ use warnings;
 use Class::Utils qw(set_params);
 use English;
 use Error::Pure qw(err);
-use MARC::Leader::L10N 0.02;
+use MARC::Leader::L10N 0.03;
 use Mo::utils::Language 0.05 qw(check_language_639_1);
 
 our $VERSION = 0.06;
