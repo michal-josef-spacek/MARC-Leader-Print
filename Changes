@@ -1,4 +1,4 @@
-0.05
+0.05 2026-04-15T13:11:39+02:00
  - Add test for constructor.
  - Add 'lang' parameter and rewrite to L10N.
  - Update copyright years.
