@@ -1,4 +1,5 @@
 0.09
+ - Add tests for check of color output.
  - Improve checking of env variables like COLOR, NO_COLOR.
 
 0.08 2026-04-15T18:06:49+02:00
