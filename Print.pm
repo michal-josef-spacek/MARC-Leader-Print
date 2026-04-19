@@ -47,7 +47,19 @@ sub new {
 		if (exists $ENV{'NO_COLOR'}) {
 			$self->{'mode_ansi'} = 0;
 		} elsif (defined $ENV{'COLOR'}) {
-			$self->{'mode_ansi'} = 1;
+			if ($ENV{'COLOR'} eq 'always') {
+				$self->{'mode_ansi'} = 1;
+			} elsif ($ENV{'COLOR'} eq 'never') {
+				$self->{'mode_ansi'} = 0;
+			} elsif ($ENV{'COLOR'} eq 'auto') {
+				if (-t STDOUT) {
+					$self->{'mode_ansi'} = 1;
+				} else {
+					$self->{'mode_ansi'} = 0;
+				}
+			} else {
+				$self->{'mode_ansi'} = 1;
+			}
 		} else {
 			$self->{'mode_ansi'} = 0;
 		}
