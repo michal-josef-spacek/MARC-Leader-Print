@@ -4,7 +4,7 @@ use warnings;
 use English;
 use Error::Pure::Utils qw(clean);
 use MARC::Leader::Print;
-use Test::More 'tests' => 12;
+use Test::More 'tests' => 14;
 use Test::NoWarnings;
 
 # Test.
@@ -50,4 +50,24 @@ eval {
 };
 is($EVAL_ERROR, "Parameter 'lang' doesn't contain valid ISO 639-1 code.\n",
 	"Parameter 'lang' doesn't contain valid ISO 639-1 code (xx).");
+clean();
+
+# Test.
+eval {
+	MARC::Leader::Print->new(
+		'mode_ansi' => 'bad',
+	);
+};
+is($EVAL_ERROR, "Parameter 'mode_ansi' must be a bool (0/1).\n",
+	"Parameter 'mode_ansi' must be a bool (0/1) (bad).");
+clean();
+
+# Test.
+eval {
+	MARC::Leader::Print->new(
+		'mode_desc' => 'bad',
+	);
+};
+is($EVAL_ERROR, "Parameter 'mode_desc' must be a bool (0/1).\n",
+	"Parameter 'mode_desc' must be a bool (0/1) (bad).");
 clean();

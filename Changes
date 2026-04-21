@@ -1,5 +1,6 @@
 0.09
  - Add tests for check of color output.
+ - Add tests for constructor.
  - Improve checking of env variables like COLOR, NO_COLOR.
  - Rewrite detecting of 'mode_ansi' to use of Check::Term::Color.
 
