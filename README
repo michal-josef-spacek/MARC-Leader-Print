@@ -191,7 +191,7 @@ EXAMPLE2
 
 DEPENDENCIES
     Check::Term::Color, Class::Utils, English, Error::Pure.
-    MARC::Leader::L10N, Mo::utils::Language.
+    MARC::Leader::L10N, Mo::utils, Mo::utils::Language.
 
     And optional Term::ANSIColor for ANSI color support.
 

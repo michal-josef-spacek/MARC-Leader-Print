@@ -356,6 +356,7 @@ L<Class::Utils>,
 L<English>,
 L<Error::Pure>.
 L<MARC::Leader::L10N>,
+L<Mo::utils>,
 L<Mo::utils::Language>.
 
 And optional L<Term::ANSIColor> for ANSI color support.
