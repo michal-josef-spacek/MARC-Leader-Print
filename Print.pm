@@ -3,6 +3,7 @@ package MARC::Leader::Print;
 use strict;
 use warnings;
 
+use Check::Term::Color qw(check_term_color);
 use Class::Utils qw(set_params);
 use English;
 use Error::Pure qw(err);
@@ -43,26 +44,9 @@ sub new {
 	# Check 'mode_desc'.
 	check_bool($self, 'mode_desc');
 
+	# Set 'mode_ansi' from env variables.
 	if (! defined $self->{'mode_ansi'}) {
-		if (exists $ENV{'NO_COLOR'}) {
-			$self->{'mode_ansi'} = 0;
-		} elsif (defined $ENV{'COLOR'}) {
-			if ($ENV{'COLOR'} eq 'always') {
-				$self->{'mode_ansi'} = 1;
-			} elsif ($ENV{'COLOR'} eq 'never') {
-				$self->{'mode_ansi'} = 0;
-			} elsif ($ENV{'COLOR'} eq 'auto') {
-				if (-t STDOUT) {
-					$self->{'mode_ansi'} = 1;
-				} else {
-					$self->{'mode_ansi'} = 0;
-				}
-			} else {
-				$self->{'mode_ansi'} = 1;
-			}
-		} else {
-			$self->{'mode_ansi'} = 0;
-		}
+		$self->{'mode_ansi'} = check_term_color();
 	}
 
 	# Check routine for ANSI colors output.
@@ -200,7 +184,7 @@ Mode for ANSI color support:
  0 - ANSI color support disabled.
 
 When is undefined, env variables C<COLOR> or C<NO_COLOR> could control ANSI
-color support.
+color support. See L<Check::Term::Color>.
 
 Default value is undef.
 
@@ -367,6 +351,7 @@ Returns array of string in array context.
 
 =head1 DEPENDENCIES
 
+L<Check::Term::Color>,
 L<Class::Utils>,
 L<English>,
 L<Error::Pure>.

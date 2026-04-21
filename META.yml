@@ -26,6 +26,7 @@ no_index:
     - t
     - xt
 requires:
+  Check::Term::Color: 0
   Class::Utils: 0.03
   English: 0
   Error::Pure: 0

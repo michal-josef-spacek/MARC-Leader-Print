@@ -1,6 +1,7 @@
 0.09
  - Add tests for check of color output.
  - Improve checking of env variables like COLOR, NO_COLOR.
+ - Rewrite detecting of 'mode_ansi' to use of Check::Term::Color.
 
 0.08 2026-04-15T18:06:49+02:00
  - Remove trailing descriptions, only values.

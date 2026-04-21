@@ -18,6 +18,7 @@ name 'MARC-Leader-Print';
 perl_version 5.006002;
 readme_from 'Print.pm';
 recursive_author_tests('xt');
+requires 'Check::Term::Color' => 0;
 requires 'Class::Utils' => 0.03;
 requires 'English' => 0;
 requires 'Error::Pure' => 0;
